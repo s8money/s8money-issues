@@ -1,1 +1,2 @@
-# s8money-issues
+# Documentation
+https://docs.s8money.com/
