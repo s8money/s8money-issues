@@ -1,0 +1,143 @@
+{
+    "id": 1,
+    "schemaVersion": 1,
+    "version": 1728155369166,
+    "data": {
+      "metadata": {
+        "accountTypes": [
+          {
+            "id": "string: ID",
+            "nm": "string: Type name such as Chequing / Saving"
+          }
+        ],
+        "accountClassifiers": [
+          {
+            "id": "string: ID",
+            "nm": "string: Type name such as FHSA / RRSP"
+          }
+        ],
+        "securityTypes": [
+          {
+            "id": "string: ID",
+            "nm": "string: Type name such as Stocks / Mutual Funds"
+          }
+        ],
+        // Array of 3 character ISO currency codes.
+        "currencies": [],
+        // Array of 2 character ISO country codes.
+        "countries": []
+      },
+      "userdata": {
+        "labels": [
+          {
+            "id": "string: Label ID",
+            "nm": "string: Name"
+          }
+        ],
+        "securities": [
+          {
+            "id": "string: Security ID",
+            "sym": "string: Symbol",
+            "nm": "string: Name",
+            "typ": "string: Reference to metadata.securityType.id",
+            "ccy": "string: 3 character ISO currency code",
+            "cty": "string: 2 character ISO country code",
+            "inp": "number: Input method - 0 (lookup) | 1 (manual)"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "string: Account ID",
+            "nm": "string: Name",
+            "typ": "string: Reference to metadata.accountType.id",
+            "cls": "string: Reference to metadata.accountClassifier.id",
+            "ccy": "string: 3 character ISO currency code",
+            "bal": "string: Reconciled balance",
+            "lb": "array: Label IDs",
+            "act": "number: Account status - 0 (closed) | 1 (active)"
+          }
+        ],
+        "transactions": [
+          {
+            "id": "string: Transaction ID",
+            "ac": "string: Account ID",
+            "dt": "number: Date in YYYYMMDD format",
+            "am": "number: Transaction amount",
+            "lb": "string: Label IDs",
+            "ds": "string: Transaction description",
+            "rc": "number: Reconciliation flag - 0 (unreconciled) | 1 (reconciled)",
+            "tr": "number: Tracking flag - 0 (untracked) | 1 (tracked)"
+          }
+        ],
+        "portfolios": [
+          {
+            "id": "string: Portfolio ID",
+            "nm": "string: Name"
+          }
+        ],
+        "prices": [
+          {
+            "id": "string: Manual Price ID",
+            "sym": "string: Symbol",
+            "dt": "number: Price date in YYYYMMDD format",
+            "ccy": "string: 3 character ISO currency code",
+            "pr": "number: Security price"
+          }
+        ],
+        "assets": [
+          {
+            "id": "string: Asset ID",
+            "nm": "string: Name",
+            "acq": "number: Date in YYYYMMDD format",
+            "cost": "number: Cost of acquisition",
+            "ccy": "string: 3 character ISO currency code",
+            "dis": "number: Disposition status - 0 (not disposed) | 1 (disposed)",
+            "dt": "number: Value date / disposition date in YYYYMMDD format",
+            "val": "number: Current value / proceeds of disposition"
+          }
+        ],
+        // Array of report configurations. This may be described in the future. It is highly unlikely you will migrate / process reports data outside the app.
+        "reports": [],
+        "trades": {
+          "buys": [
+            {
+              "id": "string: Trade ID",
+              "pf": "string: Portfolio ID",
+              "ac": "string: Account ID",
+              "sc": "string: Security ID",
+              "dt": "number: Trade date in YYYYMMDD format",
+              "ut": "number: Trade units",
+              "am": "number: Cost basis - amount spent on purchase",
+              // This holds an array of related sales. Purchased units could be sold across several sell trades (sales).
+              "rs": [
+                {
+                  "string: Trade ID of related sale": "number: Units sold in this sale"
+                }
+              ]
+            }
+          ],
+          "sells": [
+            {
+              "id": "string: Trade ID",
+              "dt": "number: Trade date in YYYYMMDD format",
+              "am": "number: Proceeds - amount gained after sale",
+              // This holds an array of related purchases. A sale could sell units purchased across several buy trades.
+              "rb": [
+                {
+                  "string: Trade ID of related buy": "number: Units sold from this lot"
+                }
+              ]
+            }
+          ]
+        },
+        // This most likely should not be required for migration.
+        "profile": {
+          "id": "1",
+          "settings": {
+            "ccy": "CAD",
+            "cty": "CA"
+          }
+        }
+      }
+    }
+  }
